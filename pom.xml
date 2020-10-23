@@ -6,11 +6,15 @@
 
     <groupId>love.mmjj</groupId>
     <artifactId>security</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>simple</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.2.10.RELEASE</spring-boot.version>
+        <spring-boot.version>2.2.9.RELEASE</spring-boot.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
     </properties>
