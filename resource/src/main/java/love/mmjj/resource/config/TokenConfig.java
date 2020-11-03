@@ -1,4 +1,4 @@
-package love.mmjj.uaa.config;
+package love.mmjj.resource.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -6,8 +6,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
-import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 
 /**
  * @author YuJian
@@ -17,11 +16,17 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+    private final TokenStore tokenStore;
+
+    public ResourceServerConfig(TokenStore tokenStore) {
+        this.tokenStore = tokenStore;
+    }
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) {
         resourceServerSecurityConfigurer
                 .resourceId("resource1")
-                .tokenServices(tokenServices())
+                .tokenStore(tokenStore)
                 .stateless(true);
     }
 
@@ -34,11 +39,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
-    public ResourceServerTokenServices tokenServices() {
-        RemoteTokenServices tokenServices = new RemoteTokenServices();
-        tokenServices.setCheckTokenEndpointUrl("http://localhost:8081/uaa/oauth/check_token");
-        tokenServices.setClientId("client1");
-        tokenServices.setClientSecret("123456");
-        return tokenServices;
-    }
+//    public ResourceServerTokenServices tokenServices() {
+//        RemoteTokenServices tokenServices = new RemoteTokenServices();
+//        tokenServices.setCheckTokenEndpointUrl("http://localhost:8081/uaa/oauth/check_token");
+//        tokenServices.setClientId("client1");
+//        tokenServices.setClientSecret("123456");
+//        return tokenServices;
+//    }
 }

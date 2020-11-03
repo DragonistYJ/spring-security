@@ -66,7 +66,7 @@ public class AuthorizationServer implements AuthorizationServerConfigurer {
                 // 允许的授权范围
                 .scopes("all")
                 .autoApprove(false)
-                .redirectUris("http://localhost:8081/uaa/test");
+                .redirectUris("http://www.baidu.com");
     }
 
     /**
